@@ -1,1 +1,1 @@
-export { default as Core } from './core/core.astro';
+export { default as Systems } from './core/Systems.astro';
