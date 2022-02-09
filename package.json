@@ -1,0 +1,22 @@
+{
+  "name": "astro-space-agency",
+  "version": "0.0.1",
+  "description": "Astro Space Agency is a component library for withastro/astro with spaceship building in mind",
+  "type": "module",
+  "exports": {
+    ".": "./index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Chrissdroid/ASA.git"
+  },
+  "keywords": [
+    "astro-component"
+  ],
+  "author": "Alexis Balthazard",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Chrissdroid/ASA/issues"
+  },
+  "homepage": "https://github.com/Chrissdroid/ASA#readme"
+}
