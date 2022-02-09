@@ -1,0 +1,29 @@
+---
+export interface Props {
+	/** The name of the compartment. */
+	name?: string;
+
+	/** The size of the compartment.
+	 * @min 0
+	 * @max 20
+	*/
+	size?: number;
+}
+
+const {
+	name: ariaLabel,
+	size = null
+} = Astro.props as Props
+---
+
+<article {ariaLabel}>
+	<slot />
+</article>
+
+<style define:vars={{size}}>
+
+article {
+	flex: 1 0 var(--size, max-content);
+}
+
+</style>

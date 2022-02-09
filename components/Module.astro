@@ -1,0 +1,41 @@
+---
+export interface Props {
+	/** Identifier of the module. */
+	id?: string;
+
+	/** The name of the module. */
+	name?: string;
+
+	/** Direction of the module content
+	 * @default 'row'
+	*/
+	direction?: 'row' | 'column' | 'column-reverse' | 'row-reverse';
+
+	/** If the module can wrap their compartments
+	 * @default true
+	*/
+	wrap?: boolean;
+}
+
+const {
+	id,
+	name: ariaLabel,
+	direction = 'row',
+	wrap = true,
+} = Astro.props as Props
+---
+
+<section {id} {ariaLabel} >
+	<slot />
+</section>
+
+<style define:vars={{direction, 'wrap': wrap ? 'wrap' : 'no-wrap'}}>
+
+section {
+	flex: 1 0 100%;
+	display: flex;
+	flex-direction: var(--direction, row);
+	flex-wrap: var(--wrap, wrap);
+}
+
+</style>
