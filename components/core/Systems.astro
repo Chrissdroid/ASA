@@ -1,4 +1,72 @@
 ---
+// Props definition
+export interface Props {
 
+	/** Title of the current page */
+	name: string;
+
+	/** Description of the page
+	 * @maxLength 500 characters
+	 * @default null
+	*/
+	description?: string;
+
+	/** Short description of the page
+	 * @maxLength 100 characters
+	 * @default null
+	*/
+	short_description?: string;
+
+	security?: {
+		/** Content-Security-Policy definition
+		 * @see https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy
+		 * @default "default-src 'self'"
+		*/
+		csp?: string;
+	}
+
+	/** Logo of the current page
+	 * @see https://developer.mozilla.org/en-US/docs/Glossary/Favicon
+	 * @default "favicon.ico"
+	 */
+	logo?: string | {
+		type: 'image/png'|'image/svg+xml'|'image/x-icon';
+		location: string;
+	}
+}
+
+const {
+	name = 'Untitled',
+	description = null,
+	short_description = null,
+	security = {},
+	logo = 'favicon.ico'
+} = Astro.props as Props;
 ---
-<!-- Core component definition -->
+
+<!-- Charset definition -->
+<meta charset="utf-8"/>
+<!-- IE compatibility -->
+<meta http-equiv="x-ua-compatible" content="ie=edge; chrome=1"/>
+<!-- Responsiveness -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+
+<!-- Document Title -->
+<title set:text={name}></title>
+<!-- Allows control over where resources are loaded from. Place as early in the document as possible, only applies to content below this tag. -->
+<meta http-equiv="Content-Security-Policy" content={'csp' in security ? security.csp : "default-src 'self'"}/>
+
+<!-- Search Eengine and Browser Meta Tags. -->
+{description && (
+	<meta name="description" content={description}/>
+)}
+{short_description && (
+	<meta name="abstract" content={short_description}/>
+)}
+
+<!-- Favicon of the page -->
+{typeof logo === 'string' ? (
+	<link rel="icon" href={logo}/>
+) : (
+	<link rel="icon" type={logo.type} href={logo.location}/>
+)}
