@@ -1,6 +1,6 @@
 {
   "name": "astro-space-agency",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Astro Space Agency is a component library for withastro/astro with spaceship building in mind",
   "type": "module",
   "exports": {
